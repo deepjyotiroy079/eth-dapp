@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form [formGroup]="userForm" (ngSubmit)="submitForm()" novalidate autocomplete="off">
+                <div class="form-group row">
+                    <label for="transferAddress" class="col-sm-4 col-form-label">Transfer Address</label>  
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="transferAddress" formControlName="transferAddress" id="inputPassword" placeholder="Transfer Address" minlength="42" maxlength="42">
+                    </div>
+                    <div *ngFor="let validation of accountValidationMessages.transferAddress">
+                        <span class="text-danger" *ngIf="userForm.get('transferAddress').hasError(validation.type) && (userForm.get('transferAddress').dirty || userForm.get('transferAddress').touched)">*{{validation.message}}</span>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label for="amount" class="col-sm-4 col-form-label">Amount</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="amount" formControlName="amount" id="amount" placeholder="Amount">
+                    </div>
+                    <div *ngFor="let validation of accountValidationMessages.amount">
+                        <span class="text-danger" *ngIf="userForm.get('amount').hasError(validation.type) && (userForm.get('amount').dirty || userForm.get('amount').touched)">*{{validation.message}}</span>
+                      </div>
+                </div>
+                <div class="form-group row">
+                    <label for="remarks" class="col-sm-4 col-form-label">Remarks</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="remarks" formControlName="remarks" id="remarks" placeholder="Remarks">
+                    </div>
+                    <div *ngFor="let validation of accountValidationMessages.remarks">
+                        <span class="text-danger" *ngIf="userForm.get('remarks').hasError(validation.type) && (userForm.get('remarks').dirty || userForm.get('remarks').touched)">*{{validation.message}}</span>
+                      </div>
+                </div>
+                <button class="btn btn-primary" type="submit">Transfer Ether</button>
+            </form>
+        </div>
+        <div class="col-md-6">
+            <div class="card border-primary">
+                <div class="card-header">Account Information</div>
+                <div class="card-body text-primary">
+                    <p class="card-text">
+                        Address : {{ user.address }} <br/>
+                        Balance : {{ user.balance }} Eth
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
