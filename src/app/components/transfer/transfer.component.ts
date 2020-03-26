@@ -12,7 +12,7 @@ export class TransferComponent implements OnInit {
 
   formSubmitted = false;
   userForm: FormGroup;
-  user: any;
+  user;
 
   accountValidationMessages = {
     transferAddress: [
@@ -37,13 +37,13 @@ export class TransferComponent implements OnInit {
     this.getAccountAndBalance();
     this.createForms();
   }
+  
   getAccountAndBalance() {
-    const that = this;
     this.transferService.getUserBalance().then(function(retAccount:any){
-      that.user.address = retAccount.account;
-      that.user.balance = retAccount.balance;
-      console.log('transfer.component :: getAccountAndBalance :: that.user');
-      console.log(that.user);
+      this.user.address = retAccount.address;
+      this.user.balance = retAccount.balance;
+      console.log('transfer.component :: getAccountAndBalance :: this.user');
+      console.log("Address : "+ this.user.address);
     }).catch(function(error){
       console.log(error);
     });

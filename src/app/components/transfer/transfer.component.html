@@ -14,7 +14,7 @@
                 <div class="form-group row">
                     <label for="amount" class="col-sm-4 col-form-label">Amount</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" name="amount" formControlName="amount" id="amount" placeholder="Amount">
+                        <input type="number" class="form-control" name="amount" formControlName="amount" id="amount" placeholder="Amount">
                     </div>
                     <div *ngFor="let validation of accountValidationMessages.amount">
                         <span class="text-danger" *ngIf="userForm.get('amount').hasError(validation.type) && (userForm.get('amount').dirty || userForm.get('amount').touched)">*{{validation.message}}</span>
@@ -37,8 +37,14 @@
                 <div class="card-header">Account Information</div>
                 <div class="card-body text-primary">
                     <p class="card-text">
-                        Address : {{ user.address }} <br/>
-                        Balance : {{ user.balance }} Eth
+                        <span *ngIf="user == null">
+                            Address : No Address <br />
+                            Balance : No Balance <br />
+                        </span>
+                        <span *ngIf="user != null">
+                            Address : {{ user.address }} <br />
+                            Balance : {{ user.balance }} <br />
+                        </span>
                     </p>
                 </div>
             </div>
